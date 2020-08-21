@@ -7,7 +7,7 @@ function test_latest() {
 
   docker run -it "trussworks/docker-template:${tag}" shellcheck --version
   docker run -it "trussworks/docker-template:${tag}" circleci version
-  docker run -it "trussworks/docker-template${tag}" aws --version
+  docker run -it "trussworks/docker-template:${tag}" aws --version
 
   echo "Passed ${tag}"
 }
