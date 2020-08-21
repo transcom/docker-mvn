@@ -6,11 +6,7 @@ jobs:
       - checkout
       - run:
           name: Check for reserved branch names
-          command: |
-            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-app-browsers || $CIRCLE_BRANCH = milmove-infra || $CIRCLE_BRANCH = milmove-orders ]]; then
-              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-app-browsers', 'milmove-infra', 'milmove-orders'; these are meaningful tags."
-              exit 1
-            fi
+          command: make check_branch
       - run:
           name: Login to Docker Hub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
