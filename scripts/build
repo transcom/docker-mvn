@@ -5,6 +5,5 @@ set -x -eu -o pipefail
 CACHE_APT=$(date '+%Y-%m-%d')
 
 docker build --build-arg CACHE_APT="$CACHE_APT" \
-	     --build-arg CACHE_PIP="$CACHE_PIP" \
 	     -t trussworks/docker-template \
 	     .

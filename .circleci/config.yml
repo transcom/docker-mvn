@@ -1,13 +1,28 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
-workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Check for reserved branch names
+          command: |
+            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-app-browsers || $CIRCLE_BRANCH = milmove-infra || $CIRCLE_BRANCH = milmove-orders ]]; then
+              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-app-browsers', 'milmove-infra', 'milmove-orders'; these are meaningful tags."
+              exit 1
+            fi
+      - run:
+          name: Login to Docker Hub
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      - run:
+          name: Build containers
+          command: make build
+
+      - run:
+          name: Test containers
+          command: make test
+
+      - run:
+          name: Release container
+          command: make release

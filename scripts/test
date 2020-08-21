@@ -1,9 +1,27 @@
 #!/bin/bash
-set -eu -o pipefail
+set -exu -o pipefail
+
+function test_latest() {
+  tag=latest
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "trussworks/docker-template:${tag}" shellcheck --version
+  docker run -it "trussworks/docker-template:${tag}" circleci version
+  docker run -it "trussworks/docker-template${tag}" aws --version
+
+  echo "Passed ${tag}"
+}
 
 for tag in latest; do
     echo "* Testing USER is properly set to 'circleci' on '$tag' tagged image"
     docker run -it trussworks/docker-template:$tag bash -xc '[[ $(whoami) = circleci ]]'
+
+    case ${tag} in
+        latest)
+        test_latest
+        ;;
+esac
+
 done
 
 echo Passed.
