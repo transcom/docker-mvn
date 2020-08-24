@@ -25,8 +25,9 @@ function test_latest() {
 
 #done
 
+tag=latest
 echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
-docker run -it trussworks/docker-template:${tag} bash -xc '[[ $(whoami) = circleci ]]'
+docker run -it trussworks/docker-template:$tag bash -xc '[[ $(whoami) = circleci ]]'
 test_latest
 
 echo Passed.
