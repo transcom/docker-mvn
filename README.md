@@ -8,6 +8,12 @@ This particular example creates a docker image built off of CircleCI's most basi
 - CircleCI CLI
 - ShellCheck
 
+## Developer Setup
+
+```sh
+brew install pre-commit docker
+```
+
 ## Creating a new Docker Image
 
 Below is a quick summary of what needs to be done to create a new docker image. Steps 3-5 are expanded on.
