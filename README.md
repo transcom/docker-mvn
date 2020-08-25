@@ -25,8 +25,9 @@ Below is a quick summary of what needs to be done to create a new docker image. 
 1. Clone this repo.
 2. Replace every instance of `trussworks/docker-template` with the name of your new image.
 3. Modify Dockerfile to create your own image.
-4. Register the image in Docker Hub.
-5. Set up CircleCI to build and release the image to Docker Hub.
+4. Modify `scripts/test` to reflect the changes you made in Dockerfile.
+5. Register the image in Docker Hub.
+6. Set up CircleCI to build and release the image to Docker Hub.
 
 ### Installing New Tools
 
