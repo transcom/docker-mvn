@@ -8,6 +8,10 @@ This particular example creates a docker image built off of CircleCI's most basi
 - CircleCI CLI
 - ShellCheck
 
+## Note about downstream images
+
+In the source code for docker images like [circleci-docker-primary](https://github.com/trussworks/circleci-docker-primary), the code for downstream images are also contained in the same repository. We've decided to not pursue this route for the images replacing `circleci-docker-primary`. While this does mean we have to manage and track more repositories, it also means we don't have to worry about the complexity of figuring out which image needs to be built and released whenever a commit is made.
+
 ## Developer Setup
 
 ```sh
