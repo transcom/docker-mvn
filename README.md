@@ -1,5 +1,7 @@
 # docker-template
 
+[![CircleCI](https://circleci.com/gh/trussworks/docker-template/tree/master.svg?style=svg)](https://circleci.com/gh/trussworks/docker-template/tree/master)
+
 This repository is meant to serve as both an example and a template for new docker images with our general format.
 
 This particular example creates a docker image built off of CircleCI's most basic convenience image [`cimg/base`](https://hub.docker.com/r/cimg/base) with the following tools installed on top:
