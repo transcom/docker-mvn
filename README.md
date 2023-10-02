@@ -1,4 +1,4 @@
-# docker-gh
+# docker-mvn
 
 This creates a docker image built off of CircleCI's most basic convenience image [`cimg/base`](https://hub.docker.com/r/cimg/base) with the following tools installed on top:
 
