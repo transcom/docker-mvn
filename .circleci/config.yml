@@ -6,7 +6,7 @@ jobs:
       - checkout
       - run:
           name: Login to Docker Hub
-          command: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          command: echo $MILMOVE_DOCKERHUB_PAT_2023 | docker login -u $DOCKER_USER --password-stdin
 
       - run:
           name: Build containers
