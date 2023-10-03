@@ -5,11 +5,11 @@ function test_latest() {
   tag=latest
   echo "Testing ${tag} Dockerfile"
 
-  docker run -it "trussworks/docker-mvn:${tag}" shellcheck --version
-  docker run -it "trussworks/docker-mvn:${tag}" circleci version
-  docker run -it "trussworks/docker-mvn:${tag}" aws --version
-  docker run -it "trussworks/gh-cli:${tag}" gh --version
-  docker run -it "trussworks/docker-mvn:${tag}" mvn --version
+  docker run -it "milmove/docker-mvn:${tag}" shellcheck --version
+  docker run -it "milmove/docker-mvn:${tag}" circleci version
+  docker run -it "milmove/docker-mvn:${tag}" aws --version
+  docker run -it "milmove/docker-mvn:${tag}" gh --version
+  docker run -it "milmove/docker-mvn:${tag}" mvn --version
 
   echo "Passed ${tag}"
 }
@@ -17,7 +17,7 @@ function test_latest() {
 # if doing multiple tags
 # for tag in latest; do
 #     echo "* Testing USER is properly set to 'circleci' on '$tag' tagged image"
-#     docker run -it trussworks/docker-mvn:$tag bash -xc '[[ $(whoami) = circleci ]]'
+#     docker run -it milmove/docker-mvn:$tag bash -xc '[[ $(whoami) = circleci ]]'
 
 #     case ${tag} in
 #         latest)
@@ -29,7 +29,7 @@ function test_latest() {
 
 tag=latest
 echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
-docker run -it trussworks/docker-mvn:$tag bash -xc '[[ $(whoami) = circleci ]]'
+docker run -it milmove/docker-mvn:$tag bash -xc '[[ $(whoami) = circleci ]]'
 test_latest
 
 echo Passed.

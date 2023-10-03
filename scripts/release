@@ -4,11 +4,11 @@ set -x -eu -o pipefail
 shopt -s extglob
 for tag in $CIRCLE_SHA1 ${CIRCLE_BRANCH//+([^A-Za-z0-9-.])/-}; do
     # latest
-    docker tag  trussworks/docker-mvn trussworks/docker-mvn:"$tag"
-    docker push trussworks/docker-mvn:"$tag"
+    docker tag  milmove/docker-mvn milmove/docker-mvn:"$tag"
+    docker push milmove/docker-mvn:"$tag"
 done
 
 # default tags
 if [[ $CIRCLE_BRANCH = master ]]; then
-    docker push trussworks/docker-mvn
+    docker push milmove/docker-mvn
 fi
