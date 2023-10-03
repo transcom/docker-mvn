@@ -41,12 +41,13 @@ RUN set -ex && cd ~ \
     && aws --version \
     && rm -r awscliv2.zip awscliv2.sig aws
 
-# install gh
-ARG GH_CLI_VERSION=""
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 \
-    && apt-add-repository https://cli.github.com/packages \
-    && apt update \
-    && apt install gh
+# install gh, import pgp key
+COPY sigs/ghcli_pgp.key /tmp/ghcli_pgp.key
+RUN gpg --import /tmp/ghcli_pgp.key
+RUN set -ex && \
+    apt-add-repository https://cli.github.com/packages && \
+    apt update && \
+    apt install -y gh
 
 # install maven
 ARG MAVEN_VERSION=3.9.4
