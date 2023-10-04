@@ -52,12 +52,25 @@ RUN set -ex && \
     apt update && \
     apt install -y gh
 
+# install openjdk 21 for maven
+ARG OPENJDK_21_SHA256=a30c454a9bef8f46d5f1bf3122830014a8fbe7ac03b5f8729bc3add4b92a1d0a
+RUN set -ex && cd ~ \
+    && curl -sSLO https://download.java.net/java/GA/jdk21/fd2272bbf8e04c3dbaee13770090416c/35/GPL/openjdk-21_linux-x64_bin.tar.gz \
+    && echo "${OPENJDK_SHA256} openjdk-21_linux-x64_bin.tar.gz" | sha256sum -c - \
+    && mkdir -p /opt/java \
+    && tar xzf openjdk-21_linux-x64_bin.tar.gz -C /opt/java \
+    && rm openjdk-21_linux-x64_bin.tar.gz
+
+# set openjdk env variables
+ENV JAVA_HOME /opt/java/jdk-21
+ENV PATH $JAVA_HOME/bin:$PATH
+
 # install maven
 ARG MAVEN_VERSION=3.9.4
 ARG MAVEN_SHA512SUM=deaa39e16b2cf20f8cd7d232a1306344f04020e1f0fb28d35492606f647a60fe729cc40d3cba33e093a17aed41bd161fe1240556d0f1b80e773abd408686217e
 RUN set -ex && cd ~ \
     && curl -sSLO https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    && echo "${MAVEN_SHA512SUM}  apache-maven-${MAVEN_VERSION}-bin.tar.gz" | sha512sum -c - \
+    && echo "${MAVEN_SHA512SUM} apache-maven-${MAVEN_VERSION}-bin.tar.gz" | sha512sum -c - \
     && tar xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && mv apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/ \
     && mv apache-maven-${MAVEN_VERSION}/lib /usr/local/lib/maven \
