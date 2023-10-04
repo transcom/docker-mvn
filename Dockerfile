@@ -43,10 +43,10 @@ RUN set -ex && cd ~ \
 
 # import gh pgp key
 COPY sigs/ghcli_pgp.key /tmp/ghcli_pgp.key
+RUN gpg --import /tmp/ghcli_pgp.key
 # add to apt keyring
 RUN gpg --export --armor 23F3D4EA75716059 | apt-key add -
 # install gh
-RUN gpg --import /tmp/ghcli_pgp.key
 RUN set -ex && \
     apt-add-repository https://cli.github.com/packages && \
     apt update && \
