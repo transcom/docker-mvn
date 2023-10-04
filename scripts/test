@@ -9,6 +9,7 @@ function test_latest() {
   docker run -it "milmove/docker-mvn:${tag}" circleci version
   docker run -it "milmove/docker-mvn:${tag}" aws --version
   docker run -it "milmove/docker-mvn:${tag}" gh --version
+  docker run -it "milmove/docker-mvn:${tag}" java --version
   docker run -it "milmove/docker-mvn:${tag}" mvn --version
 
   echo "Passed ${tag}"

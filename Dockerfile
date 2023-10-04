@@ -56,7 +56,7 @@ RUN set -ex && \
 ARG OPENJDK_21_SHA256=a30c454a9bef8f46d5f1bf3122830014a8fbe7ac03b5f8729bc3add4b92a1d0a
 RUN set -ex && cd ~ \
     && curl -sSLO https://download.java.net/java/GA/jdk21/fd2272bbf8e04c3dbaee13770090416c/35/GPL/openjdk-21_linux-x64_bin.tar.gz \
-    && echo "${OPENJDK_SHA256} openjdk-21_linux-x64_bin.tar.gz" | sha256sum -c - \
+    && echo "${OPENJDK_21_SHA256} openjdk-21_linux-x64_bin.tar.gz" | sha256sum -c - \
     && mkdir -p /opt/java \
     && tar xzf openjdk-21_linux-x64_bin.tar.gz -C /opt/java \
     && rm openjdk-21_linux-x64_bin.tar.gz
