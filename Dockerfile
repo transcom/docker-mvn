@@ -57,7 +57,7 @@ ARG MAVEN_VERSION=3.9.4
 ARG MAVEN_SHA512SUM=deaa39e16b2cf20f8cd7d232a1306344f04020e1f0fb28d35492606f647a60fe729cc40d3cba33e093a17aed41bd161fe1240556d0f1b80e773abd408686217e
 RUN set -ex && cd ~ \
     && curl -sSLO https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    && echo "${MAVEN_SHA}  apache-maven-${MAVEN_VERSION}-bin.tar.gz" | sha512sum -c - \
+    && echo "${MAVEN_SHA512SUM}  apache-maven-${MAVEN_VERSION}-bin.tar.gz" | sha512sum -c - \
     && tar xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && mv apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/ \
     && mv apache-maven-${MAVEN_VERSION}/lib /usr/local/lib/maven \
