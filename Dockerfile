@@ -75,6 +75,9 @@ RUN set -ex && cd ~ \
     && mv apache-maven-${MAVEN_VERSION} /opt/maven \
     && rm -vrf apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
+# set maven binary path
+ENV PATH /opt/maven/bin:$PATH
+
 # apt-get all the things
 # Notes:
 # - Add all apt sources first
