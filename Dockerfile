@@ -72,12 +72,8 @@ RUN set -ex && cd ~ \
     && curl -sSLO https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && echo "${MAVEN_SHA512SUM} apache-maven-${MAVEN_VERSION}-bin.tar.gz" | sha512sum -c - \
     && tar xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    && mv apache-maven-${MAVEN_VERSION}/bin/mvn /usr/local/bin/ \
-    && mv apache-maven-${MAVEN_VERSION}/lib /usr/local/lib/maven \
-    && rm -vrf apache-maven-${MAVEN_VERSION} apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
-# set maven binary path
-ENV PATH /usr/local/bin:$PATH
+    && mv apache-maven-${MAVEN_VERSION} /opt/maven \
+    && rm -vrf apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
 # apt-get all the things
 # Notes:
