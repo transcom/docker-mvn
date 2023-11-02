@@ -78,6 +78,16 @@ RUN set -ex && cd ~ \
 # set maven binary path
 ENV PATH /opt/maven/bin:$PATH
 
+# install aws sam
+ARG SAM_VERSION=v1.97.0
+ARG SAM_SHA256SUM=0810f3290373e20df480b56faf5e9e77e25870825dbab521758258a24aa470d9
+RUN set -ex && cd ~ \
+    && curl -sSL "https://github.com/aws/aws-sam-cli/releases/download/${SAM_VERSION}/aws-sam-cli-linux-x86_64.zip" -o "aws-sam-cli-linux-x86_64.zip" \
+    && [ $(sha256sum aws-sam-cli-linux-x86_64.zip | cut -f1 -d' ') = ${SAM_SHA256SUM} ] \
+    && unzip "aws-sam-cli-linux-x86_64.zip" -d "/tmp/sam-installation" \
+    && "/tmp/sam-installation/install" \
+    && sam --version
+
 # apt-get all the things
 # Notes:
 # - Add all apt sources first
