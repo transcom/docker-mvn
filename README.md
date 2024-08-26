@@ -8,6 +8,7 @@ This creates a docker image built off of CircleCI's most basic convenience image
 - Github CLI
 - Maven CLI
 - SAM CLI
+- Terraform
 
 It is intended to provide support necessary for Java applications within MilMove.
 
