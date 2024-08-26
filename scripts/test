@@ -12,6 +12,7 @@ function test_latest() {
   docker run -it "milmove/docker-mvn:${tag}" java --version
   docker run -it "milmove/docker-mvn:${tag}" mvn --version
   docker run -it "milmove/docker-mvn:${tag}" sam --version
+  docker run -it "milmove/docker-mvn:${tag}" terraform --version
 
   echo "Passed ${tag}"
 }

@@ -88,6 +88,18 @@ RUN set -ex && cd ~ \
     && "/tmp/sam-installation/install" \
     && sam --version
 
+# install terraform for lambda releases
+# this is currently under docker-mvn due to a circleci CLI executor limit of 1
+# https://releases.hashicorp.com/terraform/
+ARG TERRAFORM_VERSION=1.9.5
+ARG TERRAFORM_SHA256SUM=9cf727b4d6bd2d4d2908f08bd282f9e4809d6c3071c3b8ebe53558bee6dc913b
+
+RUN set -ex && cd ~ \
+  && curl -sSLO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+  && [ $(sha256sum terraform_${TERRAFORM_VERSION}_linux_amd64.zip | cut -f1 -d' ') = ${TERRAFORM_SHA256SUM} ] \
+  && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
+  && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
 # apt-get all the things
 # Notes:
 # - Add all apt sources first
